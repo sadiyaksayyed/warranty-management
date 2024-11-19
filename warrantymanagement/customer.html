@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Information Form</title>
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        /* Form container styling */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #efd4ae;
+            border: 2px solid #cf7fea;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input field styling */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Button styling */
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #7d369d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Hover effect for the button */
+        input[type="button"]:hover {
+            background-color: #7d369d;
+        }
+
+        /* Scanner button styling */
+        .scan-button {
+            background-color: #4CAF50;
+        }
+
+        /* Notification checkbox label styling */
+        label.checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Product Information</h2>
+        <form id="product-form">
+            <label for="productNumber">Product Number (Barcode):</label>
+            <input type="text" id="productNumber" name="productNumber" required>
+            <input type="button" class="scan-button" value="Scan Barcode" onclick="scanBarcode()">
+
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="cost">Cost (Indian Rupees):</label>
+            <input type="number" id="cost" name="cost" required>
+
+            <label for="dateOfPurchase">Date of Purchase:</label>
+            <input type="text" id="dateOfPurchase" name="dateOfPurchase" placeholder="YYYY-MM-DD" required>
+
+            <label>Retailer:</label>
+            <div class="retailer-container">
+                <select class="retailer-select" id="retailerSelect" name="retailer">
+                    <option value="retailer1">Reliance Smart</option>
+                    <option value="retailer2">DMart</option>
+                    <option value="retailer3">Vijay Sales</option>
+                    <!-- Add more retailer options as needed -->
+                </select>
+                <input type="text" id="retailerName" name="retailerName" placeholder="Retailer Name">
+            </div>
+
+            <label for="warranty">Warranty (Months):</label>
+            <select id="warranty" name="warranty" required>
+                <option value="1">1 month</option>
+                <option value="3">3 months</option>
+                <option value="6">6 months</option>
+                <option value="12">12 months</option>
+                <!-- Add more warranty options as needed -->
+            </select>
+
+            <label for="warrantyTypes">Warranty Types:</label>
+            <select id="warrantyTypes" name="warrantyTypes" required>
+                <option value="internal_content">Internal Content</option>
+                <option value="entire_product">Entire Product</option>
+                <option value="service">Service</option>
+                <option value="other">Other</option>
+                <!-- Add more warranty type options as needed -->
+            </select>
+
+            <label for="guaranty">Guaranty:</label>
+            <select id="guaranty" name="guaranty" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <input type="button" value="Submit" onclick="submitForm()">
+        </form>
+    </div>
+
+    <!-- JavaScript for barcode scanning (dummy implementation) -->
+    <script>
+        function scanBarcode() {
+            alert("Barcode scanning is not available right now please enter number.");
+        }
+
+        function submitForm() {
+            const form = document.getElementById("product-form");
+            const formData = new FormData(form);
+
+            // Collect and display form data (replace with your logic)
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            // Check if SMS notification to customers is requested
+            const notifyCheckbox = document.getElementById("notifyCheckbox");
+            const customerMobileNumbers = document.getElementById("customerMobileNumbers").value;
+            if (notifyCheckbox.checked && customerMobileNumbers) {
+                // Implement SMS notification to customers logic here (external service/API)
+                const mobileNumbersArray = customerMobileNumbers.split(",");
+                mobileNumbersArray.forEach(number => {
+                    alert("SMS notification sent to customer: " + number);
+                });
+            }
+
+            // Check if retailer confirmation is provided
+            const retailerConfirmation = formData.get("retailerConfirmation");
+            if (retailerConfirmation) {
+                const retailerNotification = formData.get("retailerNotification");
+                const confirmationStatus = retailerConfirmation === "verified" ? "Verified" : "Not Verified";
+                alert("Retailer Notification sent to: " + retailerNotification + "\nRetailer Confirmation: " + confirmationStatus);
+            }
+
+            // Replace this alert with code to submit the form data to your server
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

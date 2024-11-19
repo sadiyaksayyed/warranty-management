@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Centers</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image: url("./images/servicecentre.jpg");
+}
+::selection{
+    color: #fff;
+    background: #4285f4;
+}
+.wrapper{
+    width: 370px;
+    margin: 85px auto 0;
+}
+.select-btn, li{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.select-btn{
+    height: 65px;
+    padding: 0 20px;
+    font-size: 22px;
+    background: #fff;
+    border-radius: 7px;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.select-btn i{
+    font-size: 31px;
+    transition: transform 0.3s linear;
+}
+.wrapper.active .select-btn i{
+    transform: rotate(-180deg);
+}
+.content{
+    display: none;
+    padding: 20px;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.wrapper.active .content{
+    display: block;
+}
+.content .search{
+    position: relative;
+}
+.search i{
+    top: 50%;
+    left: 15px;
+    color: #999;
+    font-size: 20px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    position: absolute;
+}
+.search input{
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 0 20px 0 43px;
+    border: 1px solid #B3B3B3;
+}
+.search input:focus{
+    padding-left: 42px;
+    border: 2px solid #4285f4;
+}
+.search input::placeholder{
+    color: #bfbfbf;
+}
+.content .options{
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 7px;
+}
+.options::-webkit-scrollbar{
+    width: 7px;
+}
+.options::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+.options::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+.options::-webkit-scrollbar-thumb:hover{
+    background: #b3b3b3;
+}
+.options li{
+    height: 50px;
+    padding: 0 13px;
+    font-size: 21px;
+}
+.options li:hover, li.selected{
+    border-radius: 5px;
+    background: #f2f2f2;
+}
+    </style>
+</head>
+    <body>
+        <div class="wrapper">
+            <div class="select-btn">
+            <span>Select City</span>
+            <i class="uil uil-angle-down"></i>
+            </div>
+            <div class="content">
+            <div class="search">
+                <i class="uil uil-search"></i>
+                <input spellcheck="false" type="text" placeholder="Search">
+            </div>
+            <ul class="options">
+                <option value="new-york">New York</option>
+                <option value="los-angeles">Los Angeles</option>
+                <option value="chicago">Chicago</option>
+            </ul>
+        </div>
+        </div>
+
+<h1>Service Centers</h1>
+
+<select id="citySelect" onchange="showServiceCenters()">
+    <option value="">Select City</option>
+    <option value="new-york">New York</option>
+    <option value="los-angeles">Los Angeles</option>
+    <option value="chicago">Chicago</option>
+    <!-- Add more cities as needed -->
+</select>
+
+<div id="serviceCenters">
+    <!-- Service centers will be displayed here -->
+</div>
+
+<script>
+function showServiceCenters() {
+    var citySelect = document.getElementById("citySelect");
+    var selectedCity = citySelect.value;
+    var serviceCentersDiv = document.getElementById("serviceCenters");
+
+    // Clear previous service center listings
+    serviceCentersDiv.innerHTML = "";
+
+    if (selectedCity !== "") {
+        // Simulated data, replace this with actual data fetching logic
+        var serviceCenters = getServiceCenters(selectedCity);
+
+        // Display service centers
+        serviceCenters.forEach(function(center) {
+            var centerElement = document.createElement("p");
+            centerElement.textContent = center.name + " - " + center.address;
+            serviceCentersDiv.appendChild(centerElement);
+        });
+
+        // Show service centers container
+        serviceCentersDiv.style.display = "block";
+    } else {
+        // Hide service centers container if no city is selected
+        serviceCentersDiv.style.display = "none";
+    }
+}
+
+// Simulated function to fetch service centers based on selected city
+function getServiceCenters(city) {
+    // This is a dummy data, replace it with actual data retrieval from a database or API
+    if (city === "new-york") {
+        return [
+            { name: "Service Center 1", address: "123 Main St, New York, NY" },
+            { name: "Service Center 2", address: "456 Elm St, New York, NY" }
+        ];
+    } else if (city === "los-angeles") {
+        return [
+            { name: "Service Center 3", address: "789 Oak St, Los Angeles, CA" },
+            { name: "Service Center 4", address: "101 Pine St, Los Angeles, CA" }
+        ];
+    } else if (city === "chicago") {
+        return [
+            { name: "Service Center 5", address: "222 Maple St, Chicago, IL" },
+            { name: "Service Center 6", address: "333 Cherry St, Chicago, IL" }
+        ];
+    } else {
+        // Return empty array if city is not recognized
+        return [];
+    }
+}
+</script>
+
+</body>
+</html>

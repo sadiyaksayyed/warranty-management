@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Customer Reviews</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  --primary-color: #ff226f;
+  --primary-color-dark: #fe6769;
+  --text-dark: #333333;
+  --white: #ffffff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-image: url("./images/bg.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10rem;
+}
+
+.container__left h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.container__left p {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.container__left button {
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--primary-color-dark)
+  );
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.container__right {
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.card img {
+  max-width: 75px;
+  border-radius: 100%;
+}
+
+.card__content {
+  display: flex;
+  gap: 1rem;
+}
+
+.card__content span i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.card__details p {
+  font-style: italic;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.card__details h4 {
+  text-align: right;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (width < 1200px) {
+  .container {
+    gap: 3rem;
+  }
+}
+
+@media (width < 900px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .container__right {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 750px) {
+  .container__right {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+</style>
+<body>
+    <header>
+        <div class="container">
+        <div class="container__left">
+            <h1>Read what our customers love about us</h1>
+            <p>
+            Over 5+ companies frim diverse sectors consult us to enhance the
+            user experience of their products and services.
+            </p>
+            <p>
+            We have helped companies in managing warranties
+            and customer claiming warranties.
+            </p>
+        </div>
+        <div class="container__right">
+            <div class="card">
+            <img src="./images/pic-1.jpg" alt="user" />
+            <div class="card__content">
+                <span><i class="ri-double-quotes-l"></i></span>
+                <div class="card__details">
+                <p>
+                    We had a great time collaboraring with the team. They
+                    have my high recommendation!
+                </p>
+                <h4>- Customer 1</h4>
+            </div>
+        </div>
+        </div>
+        <div class="card">
+            <img src="./images/pic-2.jpeg" alt="user" />
+            <div class="card__content">
+                <span><i class="ri-double-quotes-l"></i></span>
+                <div class="card__details">
+                <p>
+                    The team drastically improved our product's user experience &
+                    helped hassle free warranty claim.
+                </p>
+                <h4>- Customer 2</h4>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./images/pic-3.jpg" alt="user" />
+            <div class="card__content">
+                <span><i class="ri-double-quotes-l"></i></span>
+                <div class="card__details">
+                <p>
+                    I absolutely loved working with team. Complete
+                    experts at what they do!
+                </p>
+                <h4>- Customer 3</h4>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </header>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer Warranty Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #efd4ae;
+            border: 2px solid #cf7fea;
+            border-radius: 10px;
+            margin: 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 40%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #7d369d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7d369d;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add Product Warranty</h2>
+        <form id="warranty-form">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productCode">Product Code:</label>
+            <input type="text" id="productCode" name="productCode" required>
+
+            <label for="warrantyPeriod">Warranty Period (Months):</label>
+            <input type="text" id="warrantyPeriod" name="warrantyPeriod" required>
+
+            <label for="warrantyType">Warranty Type:</label>
+            <select id="warrantyType" name="warrantyType">
+                <option value="hardware">Hardware</option>
+                <option value="software">Software</option>
+                <option value="service">Service</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button type="submit">Add Warranty</button>
+        </form>
+
+        <h2>Product Warranty List</h2>
+        <ul id="warranty-list">
+            <!-- Warranty items will be displayed here -->
+        </ul>
+    </div>
+
+    <script>
+        const warrantyForm = document.getElementById("warranty-form");
+        const warrantyList = document.getElementById("warranty-list");
+
+        warrantyForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const productName = document.getElementById("productName").value;
+            const productCode = document.getElementById("productCode").value;
+            const warrantyPeriod = document.getElementById("warrantyPeriod").value;
+            const warrantyType = document.getElementById("warrantyType").value;
+
+            // Create a new warranty item and add it to the list
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>${productName}</strong> (Code: ${productCode})<br>
+                Warranty Period: ${warrantyPeriod} months<br>
+                Warranty Type: ${warrantyType}
+            `;
+            warrantyList.appendChild(li);
+
+            // Clear the form inputs
+            warrantyForm.reset();
+        });
+    </script>
+</body>
+</html>

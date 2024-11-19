@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retailer Warranty Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #efd4ae;
+            border: 2px solid #cf7fea;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 40%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #7d369d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7d369d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #7d369d;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #7d369d;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Product Warranty</h2>
+        <form id="warranty-form">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productCode">Product Code:</label>
+            <input type="text" id="productCode" name="productCode" required>
+
+            <label for="customer">Customer Name:</label>
+            <input type="text" id="customer" name="customer" required>
+
+            <label for="purchase-date">Purchase Date:</label>
+            <input type="date" id="purchase-date" name="purchase-date" required>
+
+            <label for="warranty-duration">Warranty Duration (months):</label>
+            <input type="number" id="warranty-duration" name="warranty-duration" min="1" required>
+
+            <label for="warranty-type">Warranty Type:</label>
+            <select id="warranty-type" name="warranty-type" required>
+                <option value="internal_content">Internal Content</option>
+                <option value="entire_product">Entire Product</option>
+                <option value="service">Service</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button type="submit">Add Warranty</button>
+        </form>
+
+        <h2>View Product Warranties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>productName</th>
+                    <th>productCode</th>
+                    <th>Customer</th>
+                    <th>Purchase Date</th>
+                    <th>Warranty Duration</th>
+                    <th>Warranty Type</th>
+                </tr>
+            </thead>
+            <tbody id="warranty-list">
+                <!-- Warranty items will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const warrantyForm = document.getElementById("warranty-form");
+        const warrantyList = document.getElementById("warranty-list");
+
+        warrantyForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const productName = document.getElementById("productName").value;
+            const productCode = document.getElementById("productCode").value;
+            const customer = document.getElementById("customer").value;
+            const purchaseDate = document.getElementById("purchase-date").value;
+            const warrantyDuration = document.getElementById("warranty-duration").value;
+            const warrantyType = document.getElementById("warranty-type").value;
+
+            const newRow = warrantyList.insertRow();
+            newRow.innerHTML = `
+                <td>${productName}</td>
+                <td>${productCode}</td>
+                <td>${customer}</td>
+                <td>${purchaseDate}</td>
+                <td>${warrantyDuration} months</td>
+                <td>${warrantyType}</td>
+            `;
+
+            // Here, you can send the warranty data to your server for storage.
+            // Replace the mock data with actual API calls in a production environment.
+
+            // Clear the form
+            warrantyForm.reset();
+        });
+    </script>
+</body>
+</html>
